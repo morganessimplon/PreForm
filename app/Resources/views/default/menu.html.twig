@@ -1,0 +1,43 @@
+<div class="row affix-row">
+    <div class="col-sm-3 col-md-2 affix-sidebar">
+        <div class="sidebar-nav">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="visible-xs navbar-brand">Sidebar menu</span>
+                </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                    <ul class="nav navbar-nav" id="sidenav01">
+                        <li class="active">
+                            <a href="{{ path('homepage') }}" data-parent="#sidenav01" class="collapsed">
+                                <h4>
+                                    PreForm
+                                    <br>
+                                </h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('applicant_list') }}" data-parent="#sidenav01" class="collapsed">
+                                <span class="glyphicon glyphicon-user"></span> Candidats
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-parent="#sidenav01" class="collapsed">
+                                <span class="glyphicon glyphicon-book"></span> Formations
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-home"></span> Organisme</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-calendar"></span> Calendrier <span class="badge pull-right">42</span></a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Compte</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>

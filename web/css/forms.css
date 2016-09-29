@@ -1,0 +1,7 @@
+div.new_applicant input,
+div.new_applicant select{
+    margin-bottom: 10px;
+}
+div.new_applicant button{
+    margin-bottom: 40px;
+}

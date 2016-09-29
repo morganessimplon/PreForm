@@ -1,0 +1,14 @@
+div.applicant div{
+    background-color: gainsboro;
+    border-radius: 5px;
+    padding: 10px;
+}
+div.applicant a{
+    color: #000;
+}
+div.applicant a:hover{
+    text-decoration: none;
+}
+div.list_applicants button{
+    margin-bottom: 10px;
+}

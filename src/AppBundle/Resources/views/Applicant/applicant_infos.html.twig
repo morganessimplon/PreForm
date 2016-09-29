@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/infos_applicant.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}" />
+{% endblock %}
+
+{% block title %}{{ parent() }} - Infos candidat{% endblock %}
+{% block menu %}{% include ':default:menu.html.twig' %}{% endblock %}
+
+{% block body %}
+    <div class="col-sm-9 col-md-10 affix-content">
+        <div class="container list_applicants">
+            <div class="page-header">
+                <h3><span class="glyphicon glyphicon-user"></span> {{ applicant.prenom }} {{ applicant.nom }}</h3>
+            </div>
+            <div>
+                Téléphone: {{ applicant.telephone }}<br />
+                Email: {{ applicant.mail }}<br />
+                {% if applicant.adresse %}
+                {{ applicant.adresse.numero }} {{ applicant.adresse.rue }} {{ applicant.adresse.complement }} {{ applicant.adresse.codePostal }} {{ applicant.adresse.ville }}
+{% endif %}
+                {{ applicant.dateNaissance | date('d/m/Y') }}
+                Age: {{ age }} ans
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

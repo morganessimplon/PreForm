@@ -1,0 +1,35 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/list_applicants.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}" />
+{% endblock %}
+
+{% block title %}{{ parent() }} - Liste candidats{% endblock %}
+{% block menu %}{% include ':default:menu.html.twig' %}{% endblock %}
+
+{% block body %}
+    <div class="col-sm-9 col-md-10 affix-content">
+        <div class="container list_applicants">
+            <div class="page-header">
+                <h3><span class="glyphicon glyphicon-user"></span> Candidats</h3>
+            </div>
+            <a class="col-xs-12" href="{{ path('new_applicant') }}"><button type="button" class="btn btn-default col-xs-12">Nouveau candidat</button> </a>
+            <div class="form-group col-xs-11">
+                <input type="search" class="input-sm form-control" placeholder="Recherche">
+            </div>
+            <button type="submit" class="btn btn-success btn-sm col-xs-1"><span class="glyphicon glyphicon-search"></span></button>
+
+            <div>
+                {% for applicant in list_applicants %}
+                    <div class="applicant col-xs-3">
+                        <div>
+                            <a href="{{ path('applicant_infos', { 'id': applicant.id }) }}"><h4>{{ applicant.nom }} {{ applicant.prenom }}</h4></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
