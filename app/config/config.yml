@@ -64,10 +64,10 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %prod_mailer_transport%
-    host:      %prod_mailer_host%
-    username:  %prod_mailer_user%
-    password:  %prod_mailer_password%
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
     spool:     { type: memory }
 
 # FOSUser Configuration

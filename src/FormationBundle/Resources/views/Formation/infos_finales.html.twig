@@ -15,6 +15,7 @@
                 <h3><span class="glyphicon glyphicon-user"></span> {{ formation.nom }}</h3>
             </div>
             <div>
+<<<<<<< HEAD
                 <span class="infos">Durée:</span> {{ formation.duree }} heures<br /><br />
                 <span class="infos">Début de formation:</span> {{ formation.dateDebut | date('d/m/Y') }}<br /><br />
                 <span class="infos">Fin de formation:</span> {{ formation.dateFin | date('d/m/Y') }}<br /><br />
@@ -27,6 +28,8 @@
                 <span class="infos">Présentation:</span> {{ formation.presentationMetier }} <br /><br />
                 <span class="infos">Débouchés:</span> {{ formation.debouches }} <br /><br />
                 <span class="infos">Validation possible:</span> {{ formation.validation }}
+=======
+>>>>>>> 4dcd21f... Ajout du formulaire pour les formations
 
                 <div>
                     <br /><a href="{{ path('removeFormation', {id: formation.id}) }}">Supprimer</a>
