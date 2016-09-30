@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Applicant;
+use AppBundle\Form\ApplicantType;
 use AppBundle\Form\FirstContactType;
 
 /**
@@ -60,5 +61,22 @@ class ApplicantController extends Controller
         }
 
         return $this->render('AppBundle:Applicant:applicant_infos.html.twig', array('applicant' => $applicant, 'age' => $age));
+    }
+
+
+    /**
+     * @Route("/applicant/remove/{id}", name="removeApplicant")
+     */
+    public function removeApplicantAction(Request $request, $id) {
+
+        $doctrine = $this -> getDoctrine();
+        $em = $doctrine -> getManager();
+        $repository = $doctrine -> getRepository('AppBundle:Applicant');
+
+        $applicant = $repository -> find($id);
+        $em -> remove($applicant);
+        $em -> flush();
+
+        return $this -> redirectToRoute('applicant_list');
     }
 }

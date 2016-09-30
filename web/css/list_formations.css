@@ -1,0 +1,14 @@
+div.formation div{
+    background-color: gainsboro;
+    border-radius: 5px;
+    padding: 10px;
+}
+div.formation a{
+    color: #000;
+}
+div.formation a:hover{
+    text-decoration: none;
+}
+div.list_formations button{
+    margin-bottom: 10px;
+}

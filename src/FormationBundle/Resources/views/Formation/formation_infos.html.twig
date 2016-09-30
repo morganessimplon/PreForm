@@ -1,0 +1,147 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}" />
+{% endblock %}
+
+{% block title %}{{ parent() }} - Nouvelle formation{% endblock %}
+
+{% block menu %}{% include ':default:menu.html.twig' %}{% endblock %}
+
+{% block body %}
+    <div class="col-sm-9 col-md-10 affix-content">
+        <div class="container new_formation">
+            <div class="page-header">
+                <h3><span class="glyphicon glyphicon-user"></span> Nouvelle formation</h3>
+            </div>
+            {{ form_start(form_formation, {'attr': {'class': 'form-horizontal'}}) }}
+
+            {{ form_errors(form_formation) }}
+
+            {# formation form #}
+            <div class="col-xs-6">
+                <fieldset>
+                    <legend>Informations</legend>
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.nom, "Nom", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.nom) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.nom, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.duree, "Durée", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.duree) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.duree, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.date_debut, "Date de début", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.date_debut) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.date_debut, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.date_fin, "Date de fin", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.date_fin) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.date_fin, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.lieu, "Lieu", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.lieu) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.lieu, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.prix, "Prix", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.prix) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.prix, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.places, "Nombre de places", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.places) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.places, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.objectifs, "Objectifs", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.objectifs) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.objectifs, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.pre_requis, "Pré-requis", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.pre_requis) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.pre_requis, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.contenu, "Contenu", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.contenu) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.contenu, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.presentationMetier, "Présentation", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.presentationMetier) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.presentationMetier, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.debouches, "Débouchés", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.debouches) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.debouches, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        {{ form_label(form_formation.validation, "Validation", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        {{ form_errors(form_formation.validation) }}
+                        <div class="col-xs-12">
+                            {{ form_widget(form_formation.validation, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+
+
+            <div class="col-xs-12">
+                <div class="col-xs-6 col-xs-offset-2">
+                    {{ form_widget(form_formation) }}
+                    <button type="submit" class="btn btn-default center-block">Valider</button>
+                </div>
+            </div>
+
+            {{ form_rest(form_formation) }}
+
+            {{ form_end(form_formation) }}
+
+        </div>
+    </div>
+    </div>
+{% endblock %}

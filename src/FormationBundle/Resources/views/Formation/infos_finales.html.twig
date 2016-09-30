@@ -1,0 +1,40 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/infos_formation.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}" />
+{% endblock %}
+
+{% block title %}{{ parent() }} - Infos formation{% endblock %}
+{% block menu %}{% include ':default:menu.html.twig' %}{% endblock %}
+
+{% block body %}
+    <div class="col-sm-9 col-md-10 affix-content">
+        <div class="container list_formations">
+            <div class="page-header">
+                <h3><span class="glyphicon glyphicon-user"></span> {{ formation.nom }}</h3>
+            </div>
+            <div>
+                Durée: {{ formation.duree }} heures<br />
+                Début de formation: {{ formation.dateDebut | date('d/m/Y') }}<br />
+                Fin de formation: {{ formation.dateFin | date('d/m/Y') }}<br />
+                Lieu: {{ formation.lieu }} <br />
+                Prix: {{ formation.prix }} €<br />
+                Places: {{ formation.places }} <br />
+                Objectifs: {{ formation.objectifs }} <br />
+                Pré-requis conseillés: {{ formation.preRequis }} <br />
+                Contenu: {{ formation.contenu }} <br />
+                Présentation: {{ formation.presentationMetier }} <br />
+                Débouchés: {{ formation.debouches }} <br />
+                Validation possible: {{ formation.validation }}
+
+                <div>
+                    <br /><a href="{{ path('removeFormation', {id: formation.id}) }}">Supprimer</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
