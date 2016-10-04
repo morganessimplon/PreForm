@@ -1,0 +1,22 @@
+div.affix-row .affix-content a{
+    margin-left: -3px;
+    border: solid forestgreen 2px;
+    padding: 5px;
+    font-size: 16px;
+    color: darkgreen;
+}
+
+div.affix-row .affix-content a:hover{
+    text-decoration: none;
+    color: white;
+    background-color: forestgreen;
+}
+
+div.affix-row .affix-content .container {
+    font-size: 16px;
+}
+
+div.affix-row .affix-content .container .infos{
+    font-weight: bold;
+    font-size: 18px;
+}

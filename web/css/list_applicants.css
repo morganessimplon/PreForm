@@ -1,14 +1,26 @@
 div.applicant div{
-    background-color: gainsboro;
+    background-color: white;
+    border: solid forestgreen 2px;
     border-radius: 5px;
     padding: 10px;
 }
+
+div.applicant:hover div{
+    background-color: green;
+}
 div.applicant a{
-    color: #000;
+    color: black;
 }
 div.applicant a:hover{
-    text-decoration: none;
+    color: white;
+    background-color: green;
 }
 div.list_applicants button{
     margin-bottom: 10px;
+    font-weight: bold;
+}
+
+div.list_applicants button:hover {
+    color: white;
+    background-color: green;
 }

@@ -15,13 +15,13 @@
                 <h3><span class="glyphicon glyphicon-user"></span> {{ applicant.prenom }} {{ applicant.nom }}</h3>
             </div>
             <div>
-                Téléphone: {{ applicant.telephone }}<br />
-                Email: {{ applicant.mail }}<br />
+                <span class="infos">Téléphone:</span> {{ applicant.telephone }}<br /><br />
+                <span class="infos">Email:</span> {{ applicant.mail }}<br /><br />
                 {% if applicant.adresse %}
                 {{ applicant.adresse.numero }} {{ applicant.adresse.rue }} {{ applicant.adresse.complement }} {{ applicant.adresse.codePostal }} {{ applicant.adresse.ville }}
 {% endif %}
-                {{ applicant.dateNaissance | date('d/m/Y') }}
-                Age: {{ age }} ans
+                <span class="infos">Date de naissance:</span> {{ applicant.dateNaissance | date('d/m/Y') }}<br /><br />
+                <span class="infos">Age:</span> {{ age }} ans
             </div>
         </div>
 
