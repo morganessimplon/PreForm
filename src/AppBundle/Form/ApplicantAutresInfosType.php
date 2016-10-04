@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use AppBundle\Entity\Address;
 
-class ApplicantType extends AbstractType
+class ApplicantAutresInfosType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -22,10 +22,6 @@ class ApplicantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom',                TextType::class)
-            ->add('prenom',             TextType::class)
-            ->add('nomJeuneFille',      TextType::class)
-            ->add('sexe',               ChoiceType::class, array('choices' => array('Homme' => "H", "Femme" => "F")))
             ->add('dateNaissance',      DateType::class, array('widget' => 'single_text', 'data'=> new \DateTime()))
             ->add('lieuNaissance',      TextType::class)
             ->add('nationalite',        TextType::class)
@@ -35,12 +31,18 @@ class ApplicantType extends AbstractType
                     'Célibataire' => "celibataire"
                 )))
             ->add('enfants',            NumberType::class)
-            ->add('mail',               EmailType::class)
-            ->add('telephone',          TextType::class, array('required' => false))
-            ->add('adresse',            AddressType::class, array('required' => false))
             ->add('numSecu',            TextType::class)
-            ->add('caisse',             TextType::class)
-        ;
+            ->add('caisse',             ChoiceType::class, array(
+                'choices' => array(
+                    'CPAM' => 'cpam',
+                    'MSA' => 'msa'
+                )))
+            ->add('handicap',           ChoiceType::class, array(
+                'choices' => array(
+                    'Oui' => true,
+                    'Non' => false
+                )
+            ));
     }
     
     /**

@@ -19,7 +19,8 @@
             {{ form_errors(form_applicant) }}
 
             {# applicant form #}
-            <div class="col-xs-12">
+            <div class="col-xs-6">
+                <div class="col-xs-12">
                 <fieldset>
                     <legend>Informations</legend>
                     <div class="alignement">
@@ -31,49 +32,53 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-6">
-                                {{ form_label(form_applicant.prenom, "Prénom", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
-                                {{ form_errors(form_applicant.prenom) }}
-                                <div class="col-xs-12">
-                                    {{ form_widget(form_applicant.prenom, {'attr': {'class': 'form-control'}}) }}
-                                </div>
-                            </div>
-
-                            <div class="col-xs-6">
-                                {{ form_label(form_applicant.sexe, "Sexe", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
-                                {{ form_errors(form_applicant.sexe) }}
-                                <div class="col-xs-12">
-                                    {{ form_widget(form_applicant.sexe, {'attr': {'class': 'form-control'}}) }}
-                                </div>
-                            </div>
-
-                            <div class="col-xs-6">
-                                {{ form_label(form_applicant.mail, "Email", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
-                                {{ form_errors(form_applicant.mail) }}
-                                <div class="col-xs-12">
-                                    {{ form_widget(form_applicant.mail, {'attr': {'class': 'form-control'}}) }}
-                                </div>
-                            </div>
-
-                            <div class="col-xs-6">
-                                {{ form_label(form_applicant.telephone, "Téléphone", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
-                                {{ form_errors(form_applicant.telephone) }}
-                                <div class="col-xs-12">
-                                    {{ form_widget(form_applicant.telephone, {'attr': {'class': 'form-control'}}) }}
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
+                <div class="col-xs-12">
+                    {{ form_label(form_applicant.prenom, "Prénom", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                    {{ form_errors(form_applicant.prenom) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.prenom, {'attr': {'class': 'form-control'}}) }}
+                    </div>
                 </div>
-        </div>
 
+                <div class="col-xs-12">
+                    {{ form_label(form_applicant.sexe, "Sexe", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                    {{ form_errors(form_applicant.sexe) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.sexe, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-xs-6">
+                    {{ form_label(form_applicant.mail, "Email", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                    {{ form_errors(form_applicant.mail) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.mail, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="col-xs-12">
+                    {{ form_label(form_applicant.telephone, "Téléphone", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                    {{ form_errors(form_applicant.telephone) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.telephone, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="col-xs-12">
+                    <label>Formations</label>
+                    <select class="form-control col-xs-12">
+                        <option>Formation 1</option>
+                        <option>Formation 2</option>
+                        <option>Formation 3</option>
+                    </select>
+                </div>
+            </div>
 
             <div class="col-xs-12">
-                <div class="col-xs-6 col-xs-offset-2">
-                    {{ form_widget(form_applicant) }}
-                    <button type="submit" class="btn btn-default center-block">Valider</button>
-                </div>
+                {{ form_widget(form_applicant) }}
+                <button type="submit" class="btn btn-default center-block"><i class="glyphicon glyphicon-envelope"></i> Valider et envoyer le dossier</button>
+
             </div>
 
             {{ form_rest(form_applicant) }}

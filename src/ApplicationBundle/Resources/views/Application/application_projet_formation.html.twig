@@ -1,0 +1,50 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+{% endblock %}
+
+{% block title %}{{ parent() }} - Proiet de formation{% endblock %}
+
+{% block menu %}{% include ':default:menu.html.twig' %}{% endblock %}
+
+{% block body %}
+<div class="col-sm-9 col-md-10 affix-content">
+    <div class="container new_application">
+        <div class="page-header">
+            <h3><span class="glyphicon glyphicon-user"></span> Projet de formation</h3>
+        </div>
+
+        {{ form_start(form_application, {'attr': {'class': 'form-horizontal'}}) }}
+
+        {{ form_errors(form_application) }}
+
+        {# projet formation form #}
+        <div class="col-xs-12">
+            <fieldset>
+                <legend>Votre projet de formation</legend>
+                <div class="col-xs-12">
+                    {{ form_label(form_application.projetFormation, "Quel est votre projet de formation? En quoi est-il cohérent avec votre projet professionnel?", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_application.projetFormation) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_application.projetFormation, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-xs-12">
+            {{ form_widget(form_application) }}
+            <a href="{{ path('application_projet_pro', {'id': applicant.id}) }}"><button type="button" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"> Précédent</i></button></a>
+            <button type="submit" class="btn btn-default">Suivant <i class="glyphicon glyphicon-arrow-right"></i></button>
+        </div>
+
+        {{ form_rest(form_application) }}
+
+        {{ form_end(form_application) }}
+    </div>
+</div>
+</div>
+
+{% endblock %}

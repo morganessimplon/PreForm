@@ -10,8 +10,36 @@
 <div class="col-sm-9 col-md-10 affix-content">
     <div class="container">
         <div class="page-header">
-            <h3><span class="glyphicon glyphicon-home"></span> Accueil</h3>
+            <h3><span class="glyphicon glyphicon-home"></span> Bienvenue {% if user.prenom is defined %}{{ user.prenom }} {{ user.nom }}{% else %}{{ user.username }}{% endif %}</h3>
         </div>
+
+        {% if user.user is defined %}
+            {% for role in user.user.roles %}
+                {% if loop.index == 1 %}
+                    {% if role != 'ROLE_USER' %}
+                        <div class="col-xs-6">
+                            <a href="{{ path('new_applicant') }}"><button type="button" class="btn btn-default col-xs-12">Nouveau candidat</button> </a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#"><button type="button" class="btn btn-default col-xs-12">Nouvelle formation</button></a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% for role in user.roles %}
+                {% if loop.index == 1 %}
+                    {% if role != 'ROLE_USER' %}
+                        <div class="col-xs-6">
+                            <a href="{{ path('new_applicant') }}"><button type="button" class="btn btn-default col-xs-12">Nouveau candidat</button> </a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#"><button type="button" class="btn btn-default col-xs-12">Nouvelle formation</button></a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
         <div class="col-xs-6">
             <a href="{{ path('new_applicant') }}"><button type="button" class="btn btn-default col-xs-12">Nouveau candidat</button> </a>
         </div>

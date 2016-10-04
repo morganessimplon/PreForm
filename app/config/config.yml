@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@ApplicationBundle/Resources/config/services.yml" }
     - { resource: "@FormationBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
@@ -48,6 +49,7 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        unix_socket: "/Applications/MAMP/tmp/mysql/mysql.sock"
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -62,10 +64,10 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
+    transport: %prod_mailer_transport%
+    host:      %prod_mailer_host%
+    username:  %prod_mailer_user%
+    password:  %prod_mailer_password%
     spool:     { type: memory }
 
 # FOSUser Configuration

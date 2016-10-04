@@ -1,0 +1,12 @@
+/* bouton validation 1er contact */
+div.new_applicant button{
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    width: 30%;
+    font-weight: bold;
+}
+div.new_application button[type=submit]{
+    margin-top: 30px;
+    margin-bottom:50px;
+}

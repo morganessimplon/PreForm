@@ -20,6 +20,16 @@
                 {% if applicant.adresse %}
                 {{ applicant.adresse.numero }} {{ applicant.adresse.rue }} {{ applicant.adresse.complement }} {{ applicant.adresse.codePostal }} {{ applicant.adresse.ville }}
 {% endif %}
+                {{ applicant.dateNaissance | date('d/m/Y') }}
+                Age: {{ age }} ans<br />
+                Date d'enregistrement du candidat: {{ applicant.dateCreation|date('d/m/Y') }}
+<br />
+                <a href="{{ path('new_application', {'id': applicant.id}) }}"><button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i>  Créer dossier de candidature</button></a>
+
+                <a href="#"><button class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>  Voir dossier de candidature</button></a>
+                <a href="#"><button class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>  Voir dossier de financement</button></a>
+                <a href="{{ path('fos_user_change_password') }}"><button class="btn btn-default"><i class="glyphicon glyphicon-lock"></i>  Modifier mot de passe</button></a>
+
                 <span class="infos">Date de naissance:</span> {{ applicant.dateNaissance | date('d/m/Y') }}<br /><br />
                 <span class="infos">Age:</span> {{ age }} ans
             </div>

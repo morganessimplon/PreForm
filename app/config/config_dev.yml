@@ -29,6 +29,10 @@ monolog:
         #chromephp:
         #    type:   chromephp
         #    level:  info
-
-#swiftmailer:
-#    delivery_address: me@example.com
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %dev_mailer_transport%
+    host:      %dev_mailer_host%
+    username:  %dev_mailer_user%
+    password:  %dev_mailer_password%
+    spool:     { type: memory }

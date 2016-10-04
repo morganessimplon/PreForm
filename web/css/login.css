@@ -30,32 +30,3 @@ div#login div.remember{
     text-align: center;
     margin-top: 5px;
 }
-
-
-/* Inscription */
-
-div.register{
-    width: 20%;
-}
-
-div.register:hover{
-    text-decoration: none;
-}
-
-div.register a{
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-    border: solid black 3px;
-    padding:10px 164px 10px 162px;
-    margin-left: 403px;
-    border-top: none;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-
-}
-
-div.register a:hover{
-    color: white;
-    background-color: forestgreen;
-}

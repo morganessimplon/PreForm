@@ -5,6 +5,13 @@ div.new_applicant select{
 div.new_applicant button{
     margin-bottom: 40px;
 }
+.form-horizontal .control-label{
+    text-align: left;
+}
+a#add_diplome,
+a#delete_diplome{
+    margin-top: 10px;
+}
 
 div.new_formation input,
 div.new_formation select{

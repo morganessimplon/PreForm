@@ -1,3 +1,8 @@
+application:
+    resource: "@ApplicationBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 formation:
     resource: "@FormationBundle/Controller/"
     type:     annotation

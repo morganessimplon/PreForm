@@ -23,6 +23,11 @@ class Applicant
     private $id;
 
     /**
+     * @ORM\OneToOne(targetEntity="User\UserBundle\Entity\User", cascade={"persist", "remove"})
+     */
+    private $user;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="sexe", type="string", length=1)
@@ -123,9 +128,21 @@ class Applicant
     private $handicap;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime")
+     */
+    private $dateCreation;
+
+    /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Address", cascade={"persist", "remove"})
      */
     private $adresse;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ApplicationBundle\Entity\Application", mappedBy="applicant", cascade={"persist", "remove"})
+     */
+    private $applications;
 
     /**
      * Get id
@@ -495,5 +512,94 @@ class Applicant
     public function getHandicap()
     {
         return $this->handicap;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     *
+     * @return Applicant
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \User\UserBundle\Entity\User $user
+     *
+     * @return Applicant
+     */
+    public function setUser(\User\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \User\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->applications = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add application
+     *
+     * @param \ApplicationBundle\Entity\Application $application
+     *
+     * @return Applicant
+     */
+    public function addApplication(\ApplicationBundle\Entity\Application $application)
+    {
+        $this->applications[] = $application;
+
+        return $this;
+    }
+
+    /**
+     * Remove application
+     *
+     * @param \ApplicationBundle\Entity\Application $application
+     */
+    public function removeApplication(\ApplicationBundle\Entity\Application $application)
+    {
+        $this->applications->removeElement($application);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getApplications()
+    {
+        return $this->applications;
     }
 }

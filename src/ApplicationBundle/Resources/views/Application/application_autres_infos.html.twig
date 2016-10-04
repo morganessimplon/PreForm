@@ -1,0 +1,100 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+{% endblock %}
+
+{% block title %}{{ parent() }} - Identité{% endblock %}
+
+{% block menu %}{% include ':default:menu.html.twig' %}{% endblock %}
+
+{% block body %}
+<div class="col-sm-9 col-md-10 affix-content">
+    <div class="container new_application">
+        <div class="page-header">
+            <h3><span class="glyphicon glyphicon-user"></span> Identité</h3>
+        </div>
+
+        {{ form_start(form_applicant) }}
+
+        {{ form_errors(form_applicant) }}
+
+        {# infos form #}
+        <div class="col-xs-12">
+            <fieldset>
+                <legend>Autres informations</legend>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.dateNaissance, "Date de naissance", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.dateNaissance) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.dateNaissance, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.lieuNaissance, "Lieu de naissance", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.lieuNaissance) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.lieuNaissance, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.nationalite, "Nationalité", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.nationalite) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.nationalite, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.situationFamiliale, "Situation familiale", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.situationFamiliale) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.situationFamiliale, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.enfants, "Nombre d'enfants", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.enfants) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.enfants, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.numSecu, "N° Sécurité Sociale", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.numSecu) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.numSecu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.caisse, "Caisse", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.caisse) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.caisse, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.handicap, "Reconaissance travailleur handicapé?", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.handicap) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.handicap, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        {{ form_rest(form_applicant) }}
+
+        <div class="col-xs-12">
+            {{ form_widget(form_applicant) }}
+            <a href="{{ path('new_application_contact', {'id': applicant.id}) }}"><button type="button" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"> Précédent</i></button></a>
+            <button type="submit" class="btn btn-default">Suivant <i class="glyphicon glyphicon-arrow-right"></i></button>
+        </div>
+
+        {{ form_end(form_applicant) }}
+
+    </div>
+</div>
+</div>
+
+{% endblock %}

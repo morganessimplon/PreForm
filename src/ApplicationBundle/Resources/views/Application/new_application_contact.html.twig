@@ -1,0 +1,100 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+{% endblock %}
+
+{% block title %}{{ parent() }} - Contact{% endblock %}
+
+{% block menu %}{% include ':default:menu.html.twig' %}{% endblock %}
+
+{% block body %}
+<div class="col-sm-9 col-md-10 affix-content">
+    <div class="container new_application">
+        <div class="page-header">
+            <h3><span class="glyphicon glyphicon-phone"></span> Contact</h3>
+        </div>
+
+        {{ form_start(form_applicant, {'attr': {'class': 'form-horizontal'}}) }}
+
+        {{ form_errors(form_applicant) }}
+
+        {# address form #}
+        <div class="col-xs-12">
+            <fieldset>
+                <legend>Adresse</legend>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.adresse.numero, "Numéro", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.adresse.numero) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.adresse.numero, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.adresse.rue, "Adresse", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.adresse.rue) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.adresse.rue, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.adresse.complement, "Complément", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.adresse.complement) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.adresse.complement, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.adresse.codePostal, "Code postal", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.adresse.codePostal) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.adresse.codePostal, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.adresse.ville, "Ville", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.adresse.ville) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.adresse.ville, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        {# contact form #}
+        <div class="col-xs-12">
+            <fieldset>
+                <legend>Contact</legend>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.mail, "Mail", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.mail) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.mail, {'attr': {'class': 'form-control', 'value': applicant.mail }}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_applicant.telephone, "Téléphone", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_applicant.telephone) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_applicant.telephone, {'attr': {'class': 'form-control', 'value': applicant.telephone }}) }}
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        {{ form_rest(form_applicant) }}
+
+        <div class="col-xs-12">
+            {{ form_widget(form_applicant) }}
+            <a href="{{ path('new_application', {'id': applicant.id}) }}"><button type="button" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"> Précédent</i></button></a>
+            <button type="submit" class="btn btn-default">Suivant <i class="glyphicon glyphicon-arrow-right"></i></button>
+        </div>
+
+
+        {{ form_end(form_applicant) }}
+    </div>
+</div>
+</div>
+
+{% endblock %}

@@ -13,7 +13,16 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('AppBundle:Default:index.html.twig');
+        $mail = $this->getUser()->getEmail();
+        $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->findOneBy(array('mail' => $mail));
+
+        if($test) {
+            $user = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->findOneBy(array('mail' => $mail));
+        } else{
+            $user = $this->getUser();
+        }
+
+        return $this->render('AppBundle:Default:index.html.twig', array('user' => $user));
     }
 
 }
