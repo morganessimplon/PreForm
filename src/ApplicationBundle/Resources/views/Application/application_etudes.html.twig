@@ -54,7 +54,12 @@
 
         <div class="col-xs-12">
             {{ form_widget(form_application) }}
-            <a href="{{ path('application_situation_pro', {'id': applicant.id}) }}"><button type="button" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"> Précédent</i></button></a>
+            <a href={% if application.situationProfessionnelle == 'interim' %}
+                        "{{ path('application_infos_complementaires', {'id': applicant.id}) }}">
+                      {% else %}
+                        "{{ path('application_situation_pro', {'id': applicant.id}) }}">
+                      {% endif %}
+            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"> Précédent</i></button></a>
             <button type="submit" class="btn btn-default">Suivant <i class="glyphicon glyphicon-arrow-right"></i></button>
         </div>
 

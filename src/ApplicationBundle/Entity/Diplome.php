@@ -117,7 +117,7 @@ class Diplome
      *
      * @return Diplome
      */
-    public function setApplication(\ApplicationBundle\Entity\Application $application = null)
+    public function setApplication(Application $application = null)
     {
         $this->application = $application;
 

@@ -1,0 +1,51 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+{% endblock %}
+
+{% block title %}{{ parent() }} - Organisme d'orientation{% endblock %}
+
+{% block menu %}{% include ':default:menu.html.twig' %}{% endblock %}
+
+{% block body %}
+<div class="col-sm-9 col-md-10 affix-content">
+    <div class="container new_application">
+        <div class="page-header">
+            <h3><span class="glyphicon glyphicon-user"></span> Organisme d'orientation</h3>
+        </div>
+
+
+        {{ form_start(form_application, {'attr': {'class': 'form-horizontal'}}) }}
+
+        {{ form_errors(form_application) }}
+
+        {# organisme orientation form #}
+        <div class="col-xs-12">
+            <fieldset>
+                <legend>Orgnanisme d'orientation</legend>
+                <div class="col-xs-6">
+                    {{ form_label(form_application.organismeOrientation, "Avez-vous été orienté(e) par un organisme?", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_application.organismeOrientation) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_application.organismeOrientation, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-xs-12">
+            {{ form_widget(form_application) }}
+            <a href="{{ path('application_documents', {'id': applicant.id}) }}"><button type="button" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"> Précédent</i></button></a>
+            <button type="submit" class="btn btn-default">Suivant <i class="glyphicon glyphicon-arrow-right"></i></button>
+        </div>
+
+        {{ form_rest(form_application) }}
+
+        {{ form_end(form_application) }}
+    </div>
+</div>
+</div>
+
+{% endblock %}

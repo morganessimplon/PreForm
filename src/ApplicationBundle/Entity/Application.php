@@ -118,9 +118,28 @@ class Application
     private $rib;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="organisme_orientation", type="boolean", nullable=true)
+     */
+    private $organismeOrientation;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Applicant", inversedBy="applications", cascade={"persist", "remove"})
      */
      private $applicant;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="situationProfessionnelle", type="string", length=30, nullable=true)
+     */
+    private $situationProfessionnelle;
+
+    /**
+     * @ORM\OneToOne(targetEntity="ApplicationBundle\Entity\SituationPro", cascade={"persist", "remove"})
+     */
+    private $situationPro;
 
     /**
      * Get id
@@ -507,5 +526,77 @@ class Application
     public function getProjetFormation()
     {
         return $this->projetFormation;
+    }
+
+    /**
+     * Set organismeOrientation
+     *
+     * @param boolean $organismeOrientation
+     *
+     * @return Application
+     */
+    public function setOrganismeOrientation($organismeOrientation)
+    {
+        $this->organismeOrientation = $organismeOrientation;
+
+        return $this;
+    }
+
+    /**
+     * Get organismeOrientation
+     *
+     * @return boolean
+     */
+    public function getOrganismeOrientation()
+    {
+        return $this->organismeOrientation;
+    }
+
+    /**
+     * Set situationPro
+     *
+     * @param \ApplicationBundle\Entity\SituationPro $situationPro
+     *
+     * @return Application
+     */
+    public function setSituationPro(\ApplicationBundle\Entity\SituationPro $situationPro = null)
+    {
+        $this->situationPro = $situationPro;
+
+        return $this;
+    }
+
+    /**
+     * Get situationPro
+     *
+     * @return \ApplicationBundle\Entity\SituationPro
+     */
+    public function getSituationPro()
+    {
+        return $this->situationPro;
+    }
+
+    /**
+     * Set situationProfessionnelle
+     *
+     * @param string $situationProfessionnelle
+     *
+     * @return Application
+     */
+    public function setSituationProfessionnelle($situationProfessionnelle)
+    {
+        $this->situationProfessionnelle = $situationProfessionnelle;
+
+        return $this;
+    }
+
+    /**
+     * Get situationProfessionnelle
+     *
+     * @return string
+     */
+    public function getSituationProfessionnelle()
+    {
+        return $this->situationProfessionnelle;
     }
 }

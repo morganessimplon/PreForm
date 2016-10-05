@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ApplicationDocumentsType extends AbstractType
+class ApplicationOrganismeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -21,13 +21,12 @@ class ApplicationDocumentsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lettreMotiv',            FileType::class, array('required' => false))
-            ->add('photo',                  FileType::class, array('required' => false))
-            ->add('handicap',               FileType::class, array('required' => false))
-            ->add('cv',                     FileType::class, array('required' => false))
-            ->add('carteIdRecto',           FileType::class, array('required' => false))
-            ->add('carteIdVerso',           FileType::class, array('required' => false))
-            ->add('rib',                    FileType::class, array('required' => false))
+            ->add('organismeOrientation',                    ChoiceType::class, array(
+                'choices' => array(
+                    'Oui' => true,
+                    'Non' => false
+                )
+            ))
         ;
     }
     

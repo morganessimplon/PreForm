@@ -39,13 +39,6 @@
                     </div>
                 </div>
                 <div class="col-xs-6">
-                    {{ form_label(form_application.handicap, "Attestation Travailleur Handicapé", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
-                    {{ form_errors(form_application.handicap) }}
-                    <div class="col-xs-12">
-                        {{ form_widget(form_application.handicap, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-                </div>
-                <div class="col-xs-6">
                     {{ form_label(form_application.cv, "CV", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
                     {{ form_errors(form_application.cv) }}
                     <div class="col-xs-12">
@@ -71,6 +64,13 @@
                     {{ form_errors(form_application.rib) }}
                     <div class="col-xs-12">
                         {{ form_widget(form_application.rib, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    {{ form_label(form_application.handicap, "Attestation Travailleur Handicapé", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_application.handicap) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_application.handicap, {'attr': {'class': 'form-control'}}) }}
                     </div>
                 </div>
             </fieldset>

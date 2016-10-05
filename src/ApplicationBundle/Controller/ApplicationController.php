@@ -6,19 +6,25 @@ use AppBundle\Entity\Applicant;
 use AppBundle\Form\ApplicantNameType;
 use ApplicationBundle\Entity\Application;
 use ApplicationBundle\Entity\Diplome;
+use ApplicationBundle\Entity\SituationPro;
 use ApplicationBundle\Form\DiplomeType;
+use ApplicationBundle\Form\SituationPro\SituationProAutreType;
+use ApplicationBundle\Form\SituationPro\SituationProCDDType;
+use ApplicationBundle\Form\SituationPro\SituationProCDIType;
+use ApplicationBundle\Form\SituationPro\SituationProDemandeurType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\ApplicantContactType;
 use AppBundle\Form\ApplicantAutresInfosType;
-use ApplicationBundle\Form\ApplicationUrgenceType;
+use ApplicationBundle\Form\ApplicationInfosComplementairesType;
 use ApplicationBundle\Form\ApplicationSituationProType;
 use ApplicationBundle\Form\ApplicationEtudesType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use ApplicationBundle\Form\ApplicationProjetProType;
 use ApplicationBundle\Form\ApplicationProjetFormationType;
 use ApplicationBundle\Form\ApplicationDocumentsType;
+use ApplicationBundle\Form\ApplicationOrganismeType;
 
 /**
  * Class ApplicationController
@@ -107,23 +113,23 @@ class ApplicationController extends Controller
             $em->persist($applicant);
             $em->flush();
 
-            return $this->redirectToRoute('application_contact_urgence', array('id' => $applicant->getId()));
+            return $this->redirectToRoute('application_infos_complementaires', array('id' => $applicant->getId()));
         }
         return $this->render('ApplicationBundle:Application:application_autres_infos.html.twig', array('form_applicant' => $form_applicant->createView(), 'user' => $user, 'applicant' => $applicant
         ));
     }
 
     /**
-     * @Route("/applicant/{id}/contact_urgence", name="application_contact_urgence")
+     * @Route("/applicant/{id}/infos_complementaires", name="application_infos_complementaires")
      */
-    public function newApplicationContactUrgenceAction(Request $request, $id)
+    public function newApplicationInfosComplementairesAction(Request $request, $id)
     {
         $applicant = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->find($id);
         $application = $this->getDoctrine()->getManager()->getRepository('ApplicationBundle:Application')->findOneBy(array('applicant' => $applicant->getId()));
         if($application == null){
             $application = new Application();
         }
-        $form_application = $this->get('form.factory')->create(ApplicationUrgenceType::class, $application);
+        $form_application = $this->get('form.factory')->create(ApplicationInfosComplementairesType::class, $application);
 
         $mail = $this->getUser()->getEmail();
         $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->findOneBy(array('mail' => $mail));
@@ -141,7 +147,7 @@ class ApplicationController extends Controller
 
             return $this->redirectToRoute('application_situation_pro', array('id' => $applicant->getId()));
         }
-        return $this->render('ApplicationBundle:Application:application_contact_urgence.html.twig', array('form_application' => $form_application->createView(), 'user' => $user, 'applicant' => $applicant
+        return $this->render('ApplicationBundle:Application:application_infos_complementaires.html.twig', array('form_application' => $form_application->createView(), 'user' => $user, 'applicant' => $applicant
         ));
     }
 
@@ -152,7 +158,28 @@ class ApplicationController extends Controller
     {
         $applicant = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->find($id);
         $application = $this->getDoctrine()->getManager()->getRepository('ApplicationBundle:Application')->findOneBy(array('applicant' => $applicant->getId()));
-        $form_application = $this->get('form.factory')->create(ApplicationSituationProType::class, $application);
+        $situation = $application->getSituationProfessionnelle();
+        $situationPro = $application->getSituationPro();
+        if($situationPro == null){
+            $situationPro = new SituationPro();
+        }
+        switch ($situation) {
+            case 'cdd':
+                $form_situation = $this->get('form.factory')->create(SituationProCDDType::class, $situationPro);
+                break;
+            case 'cdi':
+                $form_situation = $this->get('form.factory')->create(SituationProCDIType::class, $situationPro);
+                break;
+            case 'demandeurEmploi':
+                $form_situation = $this->get('form.factory')->create(SituationProDemandeurType::class, $situationPro);
+                break;
+            case 'interim':
+                return $this->redirectToRoute('application_etudes', array('id' => $applicant->getId()));
+                break;
+            case 'autre':
+                $form_situation = $this->get('form.factory')->create(SituationProAutreType::class, $situationPro);
+                break;
+        }
 
         $mail = $this->getUser()->getEmail();
         $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->findOneBy(array('mail' => $mail));
@@ -162,14 +189,15 @@ class ApplicationController extends Controller
             $user = $this->getUser();
         }
 
-        if($request->isMethod('POST') && $form_application->handleRequest($request)){
+        if($request->isMethod('POST') && $form_situation->handleRequest($request)){
             $em = $this->getDoctrine()->getManager();
+            $application->setSituationPro($situationPro);
             $em->persist($application);
             $em->flush();
 
             return $this->redirectToRoute('application_etudes', array('id' => $applicant->getId()));
         }
-        return $this->render('ApplicationBundle:Application:application_situation_pro.html.twig', array('form_application' => $form_application->createView(), 'user' => $user, 'applicant' => $applicant
+        return $this->render('ApplicationBundle:Application:application_situation_pro.html.twig', array('form_situation' => $form_situation->createView(), 'user' => $user, 'applicant' => $applicant, 'application' => $application
         ));
     }
 
@@ -303,6 +331,38 @@ class ApplicationController extends Controller
             'form_application'   => $form->createView(),
             'user' => $user,
             'handicap' => $handicap
+        ));
+    }
+
+    /**
+     * @Route("/applicant/{id}/organisme", name="application_organisme")
+     */
+    public function newApplicationOrganismeAction(Request $request, $id){
+        $mail = $this->getUser()->getEmail();
+        $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->findOneBy(array('mail' => $mail));
+        if($test) {
+            $user = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->findOneBy(array('mail' => $mail));
+        } else{
+            $user = $this->getUser();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $applicant = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->find($id);
+        $application = $this->getDoctrine()->getManager()->getRepository('ApplicationBundle:Application')->findOneBy(array('applicant' => $applicant->getId()));
+        if (null === $application) {
+            throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+        }
+        $form = $this->get('form.factory')->create(ApplicationOrganismeType::class, $application);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em->flush();
+            return $this->redirectToRoute('application_signature', array('id' => $applicant->getId()));
+        }
+        return $this->render('ApplicationBundle:Application:application_organisme.html.twig', array(
+            'application' => $application,
+            'applicant' => $applicant,
+            'form_application'   => $form->createView(),
+            'user' => $user,
         ));
     }
 }
