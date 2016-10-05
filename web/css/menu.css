@@ -51,6 +51,7 @@
         padding-bottom: 12px;
     }
 
+    /* Mot "Preform" dans le coin en haut à gauche */
     .sidebar-nav .navbar .navbar-nav .active .collapsed {
         background-color: forestgreen;
     }
@@ -68,6 +69,7 @@
         margin-top: 0;
     }
 
+    /* Titre "Accueil", "Candidat", "Formation" */
     .affix-content .container .page-header h3 {
         margin-left: 42%;
         color: forestgreen;
@@ -113,21 +115,41 @@
     .navbar-collapse{
         padding: 0;
     }
-    .sidebar-nav .navbar li a:hover {
-        background-color: forestgreen;
-        color: white;
-    }
+
     .sidebar-nav .navbar li a > .caret {
         margin-top: 8px;
     }
 
-    div.affix-content .container button:hover{
-        color: white;
-        background-color: forestgreen;
-    }
 }
 
-/* Partie Informations */
+/* Modification sur les hovers */
+
+.row.affix-row .col-sm-9.col-md-10.affix-content .container .col-xs-6 button:hover{
+    font-weight: bold;
+    color: white;
+    background-color: forestgreen;
+}
+
+.row.affix-row .col-sm-9.col-md-10.affix-content .container .col-xs-6 a button{
+    border: solid black 2px;
+}
+
+div.col-sm-3.col-md-2.affix-sidebar .sidebar-nav .navbar.navbar-default .navbar-collapse.collapse.sidebar-navbar-collapse #sidenav01.nav.navbar-nav li:hover{
+    background-color: forestgreen;
+    color: white;
+    font-weight: bold;
+}
+
+div.col-sm-3.col-md-2.affix-sidebar .sidebar-nav .navbar.navbar-default .navbar-collapse.collapse.sidebar-navbar-collapse #sidenav01.nav.navbar-nav li a:hover{
+    color: white;
+}
+
+div.col-sm-3.col-md-2.affix-sidebar .sidebar-nav .navbar.navbar-default .navbar-collapse.collapse.sidebar-navbar-collapse #sidenav01.nav.navbar-nav li a{
+    color: black;
+}
+
+
+
 
 
 
