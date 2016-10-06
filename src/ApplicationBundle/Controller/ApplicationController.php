@@ -2,12 +2,9 @@
 
 namespace ApplicationBundle\Controller;
 
-use AppBundle\Entity\Applicant;
 use AppBundle\Form\ApplicantNameType;
 use ApplicationBundle\Entity\Application;
-use ApplicationBundle\Entity\Diplome;
 use ApplicationBundle\Entity\SituationPro;
-use ApplicationBundle\Form\DiplomeType;
 use ApplicationBundle\Form\SituationPro\SituationProAutreType;
 use ApplicationBundle\Form\SituationPro\SituationProCDDType;
 use ApplicationBundle\Form\SituationPro\SituationProCDIType;
@@ -18,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\ApplicantContactType;
 use AppBundle\Form\ApplicantAutresInfosType;
 use ApplicationBundle\Form\ApplicationInfosComplementairesType;
-use ApplicationBundle\Form\ApplicationSituationProType;
 use ApplicationBundle\Form\ApplicationEtudesType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use ApplicationBundle\Form\ApplicationProjetProType;
@@ -74,12 +70,8 @@ class ApplicationController extends Controller
         $form_applicant = $this->get('form.factory')->create(ApplicantContactType::class, $applicant);
 
         $mail = $this->getUser()->getEmail();
-        $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->findOneBy(array('mail' => $mail));
-        if($test) {
-            $user = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->findOneBy(array('mail' => $mail));
-        } else{
-            $user = $this->getUser();
-        }
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserByEmail($mail);
 
         if($request->isMethod('POST') && $form_applicant->handleRequest($request)){
             $em = $this->getDoctrine()->getManager();
@@ -220,7 +212,6 @@ class ApplicationController extends Controller
            throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
         }
         $form = $this->get('form.factory')->create(ApplicationEtudesType::class, $application);
-
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
            foreach ($application->getDiplomes() as $diplome){
                $diplome->setApplication($application);
@@ -237,7 +228,7 @@ class ApplicationController extends Controller
     }
 
     /**
-     * @Route("/applicant/{id}/projet pro", name="application_projet_pro")
+     * @Route("/applicant/{id}/projet_pro", name="application_projet_pro")
      */
     public function newApplicationProjetProAction(Request $request, $id){
         $mail = $this->getUser()->getEmail();
@@ -339,16 +330,18 @@ class ApplicationController extends Controller
      */
     public function newApplicationOrganismeAction(Request $request, $id){
         $mail = $this->getUser()->getEmail();
-        $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->findOneBy(array('mail' => $mail));
-        if($test) {
-            $user = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->findOneBy(array('mail' => $mail));
-        } else{
-            $user = $this->getUser();
-        }
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserByEmail($mail);
 
         $em = $this->getDoctrine()->getManager();
         $applicant = $this->getDoctrine()->getManager()->getRepository('AppBundle:Applicant')->find($id);
         $application = $this->getDoctrine()->getManager()->getRepository('ApplicationBundle:Application')->findOneBy(array('applicant' => $applicant->getId()));
+
+        $diplomes = $application->getDiplomes();
+        foreach ($diplomes as $diplome){
+            dump($diplome);
+        }
+
         if (null === $application) {
             throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
         }

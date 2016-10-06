@@ -61,17 +61,17 @@
                 </div>
             </fieldset>
         </div>
-
-        <div class="col-xs-12">
-            {{ form_widget(form_application) }}
-            <a href="{{ path('application_autres_infos', {'id': applicant.id}) }}"><button type="button" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"> Précédent</i></button></a>
-            <button type="submit" class="btn btn-default">Suivant <i class="glyphicon glyphicon-arrow-right"></i></button>
-        </div>
-
-        {{ form_rest(form_application) }}
-
-        {{ form_end(form_application) }}
     </div>
+
+    <div class="col-xs-12">
+        {{ form_widget(form_application) }}
+        <a href="{{ path('application_autres_infos', {'id': applicant.id}) }}"><button type="button" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"> Précédent</i></button></a>
+        <button type="submit" class="btn btn-default">Suivant <i class="glyphicon glyphicon-arrow-right"></i></button>
+    </div>
+
+    {{ form_rest(form_application) }}
+
+    {{ form_end(form_application) }}
 </div>
 </div>
 

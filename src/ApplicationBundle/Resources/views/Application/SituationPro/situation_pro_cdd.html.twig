@@ -1,0 +1,25 @@
+
+        {# situation professionelle form #}
+        <div class="col-xs-6">
+            <fieldset>
+                <legend>{{ application.situationProfessionnelle | upper }}</legend>
+                <div class="col-xs-12">
+                    {{ form_label(form_situation.dateDebut, "Date de début", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_situation.dateDebut) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_situation.dateDebut, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    {{ form_label(form_situation.dateFin, "Date de fin", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_situation.dateFin) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_situation.dateFin, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+    </div>
+
+

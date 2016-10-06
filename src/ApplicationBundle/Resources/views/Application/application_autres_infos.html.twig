@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="col-xs-6">
-                    {{ form_label(form_applicant.handicap, "Reconaissance travailleur handicapé?", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_label(form_applicant.handicap, "Reconnaissance travailleur handicapé?", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
                     {{ form_errors(form_applicant.handicap) }}
                     <div class="col-xs-12">
                         {{ form_widget(form_applicant.handicap, {'attr': {'class': 'form-control'}}) }}
@@ -82,6 +82,7 @@
                 </div>
             </fieldset>
         </div>
+    </div>
 
         {{ form_rest(form_applicant) }}
 
@@ -93,7 +94,6 @@
 
         {{ form_end(form_applicant) }}
 
-    </div>
 </div>
 </div>
 

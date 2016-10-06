@@ -16,33 +16,15 @@
             <h3><span class="glyphicon glyphicon-user"></span> Situation professionnelle</h3>
         </div>
 
-        {#{{ form_start(form_application, {'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_start(form_situation, {'attr': {'class': 'form-horizontal'}}) }}
 
-        {{ form_errors(form_application) }}#}
-
-        {# situation professionelle form #}
-        {#<div class="col-xs-6">
-            <fieldset>
-                <legend>{{ application.situationProfessionnelle | upper }}</legend>
-                <div class="col-xs-12">
-                    {{ form_label(form_application.projetPro, "Situation professionnelle", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
-                    {{ form_errors(form_application.projetPro) }}
-                    <div class="col-xs-12">
-                        {{ form_widget(form_application.projetPro, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-
-
-
-        {{ form_rest(form_application) }}
-
-        {{ form_end(form_application) }}#}
-
-        {{ form_start(form_situation) }}
         {{ form_errors(form_situation) }}
 
+        {% if application.situationProfessionnelle == 'cdd' %}
+            {% include 'ApplicationBundle:Application:SituationPro/situation_pro_cdd.html.twig' %}
+        {% elseif application.situationProfessionnelle == 'cdi' %}
+            {% include 'ApplicationBundle:Application:SituationPro/situation_pro_cdi.html.twig' %}
+        {% endif %}
         <div class="col-xs-12">
             {{ form_widget(form_situation) }}
             <a href="{{ path('application_infos_complementaires', {'id': applicant.id}) }}"><button type="button" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"> Précédent</i></button></a>
@@ -50,6 +32,7 @@
         </div>
     </div>
 
+        {{ form_rest(form_situation) }}
         {{ form_end(form_situation) }}
 </div>
 </div>

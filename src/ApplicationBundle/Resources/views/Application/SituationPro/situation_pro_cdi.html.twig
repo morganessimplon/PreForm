@@ -1,0 +1,72 @@
+
+        {# situation professionelle form #}
+        <div class="col-xs-6">
+            <fieldset>
+                <legend>{{ application.situationProfessionnelle | upper }}</legend>
+                <div class="col-xs-12">
+                    {{ form_label(form_situation.duree, "Depuis combien de mois", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_situation.duree) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_situation.duree, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    {{ form_label(form_situation.nomEntreprise, "Nom de l'entreprise", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_situation.nomEntreprise) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_situation.nomEntreprise, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    {{ form_label(form_situation.telephone, "Téléphone", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_situation.telephone) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_situation.telephone, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-xs-6">
+            <fieldset>
+                <legend>Coordonnées de l'entreprise</legend>
+                <div class="col-xs-12">
+                    {{ form_label(form_situation.adresseEmployeur.numero, "Numéro", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_situation.adresseEmployeur.numero) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_situation.adresseEmployeur.numero, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    {{ form_label(form_situation.adresseEmployeur.rue, "Rue", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_situation.adresseEmployeur.rue) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_situation.adresseEmployeur.rue, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    {{ form_label(form_situation.adresseEmployeur.complement, "Complément", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_situation.adresseEmployeur.complement) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_situation.adresseEmployeur.complement, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    {{ form_label(form_situation.adresseEmployeur.codePostal, "Code postal", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_situation.adresseEmployeur.codePostal) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_situation.adresseEmployeur.codePostal, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    {{ form_label(form_situation.adresseEmployeur.ville, "ville", {'label_attr': {'class': 'col-xs-12 control-label'}}) }}
+                    {{ form_errors(form_situation.adresseEmployeur.ville) }}
+                    <div class="col-xs-12">
+                        {{ form_widget(form_situation.adresseEmployeur.ville, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+
